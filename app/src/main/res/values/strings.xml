@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">networking</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string-array name="filters_array">
+        <item>random</item>
+        <item>maid</item>
+        <item>waifu</item>
+        <item>marin-kitagawa</item>
+        <item>mori-calliope</item>
+        <item>raiden-shogun</item>
+        <item>oppai</item>
+        <item>selfies</item>
+        <item>uniform</item>
+    </string-array>
+</resources>
