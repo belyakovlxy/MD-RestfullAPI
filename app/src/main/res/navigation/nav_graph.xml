@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_main_to_image"
             app:destination="@id/image" />
+        <action
+            android:id="@+id/action_main_to_savedImages"
+            app:destination="@id/savedImages" />
     </fragment>
     <fragment
         android:id="@+id/image"
@@ -28,6 +31,22 @@
             app:destination="@id/main" />
         <action
             android:id="@+id/action_image_self"
+            app:destination="@id/image" />
+        <argument
+            android:name="url"
+            app:argType="string"
+            android:defaultValue=""/>
+    </fragment>
+    <fragment
+        android:id="@+id/savedImages"
+        android:name="com.example.networking.fragments.SavedImages"
+        android:label="fragment_saved_images"
+        tools:layout="@layout/fragment_saved_images" >
+        <action
+            android:id="@+id/action_savedImages_to_main"
+            app:destination="@id/main" />
+        <action
+            android:id="@+id/action_savedImages_to_image"
             app:destination="@id/image" />
     </fragment>
 </navigation>

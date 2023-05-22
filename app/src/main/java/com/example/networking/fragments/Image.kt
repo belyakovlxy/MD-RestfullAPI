@@ -33,7 +33,9 @@ class Image : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentImageBinding.inflate(layoutInflater);
-
+        binding.closeButton.setOnClickListener() {
+            MAIN.navController.navigate(R.id.action_image_to_main);
+        }
 
         Log.d("passed tag", args.tag)
         if (args.tag != "")
@@ -54,23 +56,32 @@ class Image : Fragment() {
                     Log.d("kek", waifuList.images[0].url.toString())
                     url = waifuList.images[0].url.toString()
 
-                    binding.apply {
-                        binding.closeButton.setOnClickListener() {
-                            MAIN.navController.navigate(R.id.action_image_to_main);
-                        }
-
-                        binding.getimageButton.setOnClickListener() {
-                            val action = ImageDirections.actionImageSelf(args.tag)
-                            MAIN.navController.navigate(action);
-                        }
-                        Log.d("total kek", url)
-                        if (url != "")
-                        {
-                            Picasso.get().load(url).into(binding.imageView)
-                        }
+                    binding.getimageButton.setOnClickListener() {
+                        val action = ImageDirections.actionImageSelf(args.tag)
+                        MAIN.navController.navigate(action);
                     }
+                    Log.d("total kek", url)
+                    if (url != "")
+                    {
+                        Picasso.get().load(url).into(binding.imageView)
+                    }
+
+                    binding.saveImageButton.setOnClickListener() {
+                        MAIN.waifuAdapter.addWaifu(Waifu(url));
+                    }
+
+
                 }
             }
+        }
+
+        if (args.url != "")
+        {
+            binding.getimageButton.setOnClickListener() {
+                val action = ImageDirections.actionImageSelf("", args.url)
+                MAIN.navController.navigate(action);
+            }
+            Picasso.get().load(args.url).into(binding.imageView)
         }
         return binding.root
     }

@@ -5,10 +5,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.networking.MAIN
 import com.example.networking.R
+import com.example.networking.databinding.FragmentSavedImagesBinding
 
 class SavedImages : Fragment() {
 
+    lateinit var binding: FragmentSavedImagesBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -17,7 +21,17 @@ class SavedImages : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_saved_images, container, false)
+        binding = FragmentSavedImagesBinding.inflate(layoutInflater);
+
+        binding.apply {
+            binding.rcView.layoutManager = LinearLayoutManager(context);
+            binding.rcView.adapter = MAIN.waifuAdapter;
+
+            binding.goBackButton.setOnClickListener() {
+                MAIN.navController.navigate(R.id.action_savedImages_to_main);
+            }
+        }
+
+        return binding.root;
     }
 }

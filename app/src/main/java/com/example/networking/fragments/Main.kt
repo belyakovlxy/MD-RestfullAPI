@@ -38,19 +38,28 @@ class Main : Fragment(), AdapterView.OnItemSelectedListener {
         binding = FragmentMainBinding.inflate(layoutInflater, container, false);
 
         spinner = binding.spinner;
-        var spinnerAdapter = ArrayAdapter.createFromResource (requireContext(), R.array.filters_array, android.R.layout.simple_spinner_item);
+        var spinnerAdapter = ArrayAdapter.createFromResource(
+            requireContext(),
+            R.array.filters_array,
+            android.R.layout.simple_spinner_item
+        );
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.adapter = spinnerAdapter
         spinner.onItemSelectedListener = this
 
         binding.apply {
             binding.getImageButton.setOnClickListener() {
-                val action = MainDirections.actionMainToImage(filterTag);
+                val action = MainDirections.actionMainToImage(filterTag, "");
                 MAIN.navController.navigate(action)
             }
-        }
 
-        return binding.root
+            binding.savedImagesButton.setOnClickListener() {
+                MAIN.navController.navigate(R.id.action_main_to_savedImages)
+
+            }
+
+            return binding.root
+        }
     }
 
     override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
